@@ -11,11 +11,17 @@ router.post('/', async (req, res) => {
     }
 
     try {
+        console.log(`[Registration] Processing registration request for: ${email}`);
         await regService.register({ email, name, surname, password });
+        console.log(`[Registration] User registration completed for: ${email}`);
         res.status(201).end();
     } catch (err) {
+        console.log(`[Registration] Registration failed for ${email}: ${err.message}`);
         if (err.message === 'INVALID_REGISTRATION') {
             return res.status(401).json({ error: 'Invalid registration' });
+        }
+        if (err.message === 'USER_EXISTS') {
+            return res.status(409).json({ error: 'User already exists' });
         }
         res.status(500).json({ error: 'Internal server error' });
     }
