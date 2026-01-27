@@ -4,15 +4,15 @@ const regService = require('../services/registration.services');
 
 // POST /register
 router.post('/', async (req, res) => {
-    const { email, name, surname, password } = req.body;
+    const { email, name, surname, password, location } = req.body;
 
-    if (!email || !name || !surname || !password) {
-        return res.status(400).json({ error: 'Email, name, surname and password required' });
+    if (!email || !name || !surname || !password || !location) {
+        return res.status(400).json({ error: 'Missing required fields: email, name, surname, password, location' });
     }
 
     try {
-        console.log(`[Registration] Processing registration request for: ${email}`);
-        await regService.register({ email, name, surname, password });
+        console.log(`[Registration] Processing registration request for: ${email} at ${location}`);
+        await regService.register({ email, name, surname, password, location });
         console.log(`[Registration] User registration completed for: ${email}`);
         res.status(201).end();
     } catch (err) {
