@@ -7,7 +7,7 @@ Creates new users and stores them via Internal Data Adapter.
 
 ## Configuration
 
-`.env`
+Create `.env` from `.env.example`:
 ```
 PORT=3003
 DATA_ADAPTER_URL=http://localhost:3001
@@ -23,6 +23,10 @@ Body:
 
 ### `GET /health`
 Service health check.
+
+## Capabilities
+- Creates new users and stores them via Internal Data Adapter
+- Validates basic registration payload
 
 ## Run
 ```
