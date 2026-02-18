@@ -24,6 +24,20 @@ Body:
 ### `GET /health`
 Service health check.
 
+
+## JSON Examples
+
+### `POST /register`
+```json
+{
+  "email": "user@example.com",
+  "name": "John",
+  "surname": "Doe",
+  "password": "securepassword123",
+  "location": "45.07,7.69"
+}
+```
+
 ## Capabilities
 - Creates new users and stores them via Internal Data Adapter
 - Validates basic registration payload
